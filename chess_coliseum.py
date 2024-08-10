@@ -1,5 +1,4 @@
 import gym
-from gym import spaces
 import chess
 from rewards.default_reward import DefaultReward
 from observers.default_observation import DefaultObservation
@@ -28,8 +27,13 @@ class ChessEnv(gym.Env):
     def step(self, action):
         move = self.parser.decode(action)
 
+        # only hard coded reward currently is -1 for illegal move
+        # could potentially reference reward class for a new illegal move method reward
         if action not in self.legal_moves:
-            return self.observation.calculate(self.board), -1.0, True, {'result': 'illegal_move'}
+            rew = [-1, 0]
+            if not self.board.turn:
+                rew = [0, -1]
+            return self.observation.calculate(self.board), rew, True, {'result': 'illegal_move'}
 
         self.board.push(move)
         done = self.board.is_game_over()
@@ -42,7 +46,6 @@ class ChessEnv(gym.Env):
             self.populate_legal_moves()
 
         return self.observation.calculate(self.board), reward, done, info
-        #return [], reward, done, info
 
     def render(self, mode='human'):
         print(self.board)
