@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6721d31c-b07b-44cf-a728-4ee202248ec9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/example.py" beforeDir="false" afterPath="$PROJECT_DIR$/example.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gym_chess.py" beforeDir="false" afterPath="$PROJECT_DIR$/chess_coliseum.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rewards/default_reward.py" beforeDir="false" afterPath="$PROJECT_DIR$/rewards/default_reward.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
