@@ -18,3 +18,5 @@ rewards/__pycache__/reward.cpython-39.pyc
 utilities/__pycache__/__init__.cpython-39.pyc
 utilities/__pycache__/one_hot_encoder.cpython-39.pyc
 .idea/.name
+rewards/__pycache__/combination_reward.cpython-39.pyc
+rewards/__pycache__/piece_ratio_reward.cpython-39.pyc

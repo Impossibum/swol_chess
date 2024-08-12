@@ -1,7 +1,9 @@
 from chess_coliseum import ChessEnv
 from random import sample
 
-env = ChessEnv()
+
+# Simple defaults for all 3 args are provided but custom solutions will likely yield far better results.
+env = ChessEnv(observation_class=None, reward_class=None, parser=None)
 done = False
 # simulate 10 games with random mover agents
 for i in range(10):

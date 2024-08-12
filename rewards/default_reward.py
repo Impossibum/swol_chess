@@ -11,6 +11,11 @@ class DefaultReward(Reward):
                     return 1, -1
             elif board.is_stalemate() or board.is_insufficient_material():
                 return 0, 0
+            elif illegal_move:
+                if board.turn:
+                    return -1, 1
+                else:
+                    return 1, -1
             else:
                 return 0, 0
         else:

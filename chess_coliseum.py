@@ -23,6 +23,7 @@ class ChessEnv(gym.Env):
         self.observation.reset()
         self.board.reset()
         self.populate_legal_moves()
+        self.reward.reset()
         return self.observation.calculate(self.board)
 
     def step(self, action)-> tuple[list, tuple[float, float], bool, dict]:
