@@ -19,7 +19,7 @@ class DefaultObservation(Observation):
         # 64 squares of len 13 one hot vectors + 2 to indicate color and 2 for castling rights
         self.obs_space = spaces.Discrete((64*13)+4)
 
-    def calculate(self, board):
+    def calculate(self, board) -> list:
         if self.white_only and not board.turn:
             board = self.mirror_board(board)
         obs = list(chain(*self._board_to_matrix(board)))

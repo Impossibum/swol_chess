@@ -11,8 +11,8 @@ for i in range(10):
         action = sample(env.legal_moves, 1)[0]
         obs, reward, done, info = env.step(action)
         # if match is concluded, print the results
-        if info:
-            print(info)
+        if 'result' in info:
+            print(info['result'])
     done = False
 
 env.close()

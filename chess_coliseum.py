@@ -17,6 +17,7 @@ class ChessEnv(gym.Env):
         self.action_space = self.parser.get_action_space()
         self.populate_legal_moves()
 
+
     def reset(self):
         self.reward.reset()
         self.observation.reset()
@@ -24,23 +25,20 @@ class ChessEnv(gym.Env):
         self.populate_legal_moves()
         return self.observation.calculate(self.board)
 
-    def step(self, action):
+    def step(self, action)-> tuple[list, tuple[float, float], bool, dict]:
         move = self.parser.decode(action)
-
-        # only hard coded reward currently is -1 for illegal move
-        # could potentially reference reward class for a new illegal move method reward
-        if action not in self.legal_moves:
-            rew = [-1, 0]
-            if not self.board.turn:
-                rew = [0, -1]
-            return self.observation.calculate(self.board), rew, True, {'result': 'illegal_move'}
-
-        self.board.push(move)
-        done = self.board.is_game_over()
-        reward = self.reward.calculate(self.board, done)
+        legal_move = action in self.legal_moves
         info = {}
+        done = True
+        if legal_move:
+            self.board.push(move)
+            done = self.board.is_game_over()
+        else:
+            info['result'] = 'illegal move'
+        info['board'] = self.board
+        reward = self.reward.calculate(self.board, done, legal_move)
 
-        if done:
+        if done and legal_move:
             info['result'] = self.board.result()
         else:
             self.populate_legal_moves()
